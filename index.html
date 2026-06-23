@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rizwan Ahmad · Senior Backend Engineer</title>
+    <style>
+        /* ----- reset & base ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f172a;
+            background-color: var(--bg-color);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #f8fafc;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ----- CSS variables (theme) ----- */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --border: #334155;
+        }
+
+        /* ----- cards & containers ----- */
+        .card {
+            background-color: #1e293b;
+            background-color: var(--card-bg);
+            border: 1px solid #334155;
+            border-color: var(--border);
+            border-radius: 1.25rem;
+            padding: 1.75rem 1.75rem 1.5rem;
+            margin-bottom: 2rem;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #38bdf8;
+            border-color: var(--accent);
+        }
+
+        /* ----- section headers with left accent ----- */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            padding-left: 0.75rem;
+            border-left: 4px solid #38bdf8;
+            border-left-color: var(--accent);
+            margin-bottom: 1.25rem;
+            color: #f8fafc;
+            color: var(--text-main);
+        }
+
+        /* ----- header / name block ----- */
+        .name-title {
+            margin-bottom: 0.25rem;
+        }
+
+        .name-title h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            color: #f8fafc;
+            color: var(--text-main);
+        }
+
+        .role-tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #94a3b8;
+            color: var(--text-muted);
+            margin-top: 0.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* ----- contact row (minimal) ----- */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem 1.75rem;
+            font-size: 0.95rem;
+            color: #94a3b8;
+            color: var(--text-muted);
+            border-top: 1px solid #334155;
+            border-top-color: var(--border);
+            padding-top: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .contact-links a {
+            color: #94a3b8;
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px dotted transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .contact-links a:hover {
+            color: #38bdf8;
+            color: var(--accent);
+            border-bottom-color: #38bdf8;
+            border-bottom-color: var(--accent);
+        }
+
+        /* ----- profile text ----- */
+        .profile-text {
+            color: #94a3b8;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* ----- skills grid (multi-column) ----- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 2rem;
+        }
+
+        .skill-category h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #94a3b8;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #334155;
+            border-bottom-color: var(--border);
+            padding-bottom: 0.35rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.5rem;
+        }
+
+        .skill-tag {
+            background-color: #0f172a;
+            background-color: var(--bg-color);
+            border: 1px solid #334155;
+            border-color: var(--border);
+            border-radius: 2rem;
+            padding: 0.2rem 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 450;
+            color: #f8fafc;
+            color: var(--text-main);
+            letter-spacing: 0.01em;
+        }
+
+        /* ----- case study cards (NDA‑compliant) ----- */
+        .case-card {
+            background-color: #0f172a;
+            background-color: var(--bg-color);
+            border: 1px solid #334155;
+            border-color: var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem 1.5rem 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #f8fafc;
+            color: var(--text-main);
+            margin-bottom: 0.1rem;
+        }
+
+        .case-meta {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            font-weight: 400;
+        }
+
+        .case-label {
+            font-weight: 600;
+            color: #f8fafc;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.35rem;
+        }
+
+        .case-label + p {
+            margin-top: 0.15rem;
+            margin-bottom: 0.6rem;
+            color: #94a3b8;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .case-label:last-of-type + p {
+            margin-bottom: 0;
+        }
+
+        /* ----- education / meta row ----- */
+        .edu-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            color: #94a3b8;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid #334155;
+            border-top-color: var(--border);
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .edu-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* ----- responsive (mobile-first) ----- */
+        @media (max-width: 600px) {
+            body {
+                padding: 1.25rem 0.75rem;
+            }
+
+            .card {
+                padding: 1.25rem 1rem;
+            }
+
+            .name-title h1 {
+                font-size: 2rem;
+            }
+
+            .role-tagline {
+                font-size: 1rem;
+            }
+
+            .contact-links {
+                gap: 0.75rem 1.25rem;
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .case-card {
+                padding: 1.25rem 1rem;
+            }
+
+            .edu-meta {
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            .section-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .contact-links {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- header -->
+    <div class="card" style="margin-bottom: 1.75rem;">
+        <div class="name-title">
+            <h1>Rizwan Ahmad</h1>
+            <div class="role-tagline">Senior Backend Engineer · Laravel · Python · Distributed Systems</div>
+        </div>
+        <div class="contact-links">
+            <span>📧 <a href="mailto:rizahmaddev@gmail.com">rizahmaddev@gmail.com</a></span>
+            <span>📱 <a href="tel:+923158192177">0315-8192177</a></span>
+            <span>🔗 <a href="https://www.linkedin.com/in/rizwanahmad-dev/">linkedin.com/in/rizwanahmad-dev/</a></span>
+        </div>
+    </div>
+
+    <!-- professional profile -->
+    <div class="card">
+        <div class="section-title">Professional Profile</div>
+        <p class="profile-text">
+            Senior Backend Engineer and Team Lead with <strong>5+ years</strong> of experience architecting
+            high‑throughput systems in the <strong>PHP/Laravel</strong> and <strong>Python</strong> ecosystems.
+            Proven track record of delivering autonomous, remote‑first solutions for US and Canadian enterprises
+            across strict time zones. Expert in building scalable ETL pipelines, microservices, and enforcing
+            strict automated testing standards — achieving 100% production stability.
+        </p>
+    </div>
+
+    <!-- technical architecture stack (skills) -->
+    <div class="card">
+        <div class="section-title">Technical Architecture Stack</div>
+        <div class="skills-grid">
+
+            <div class="skill-category">
+                <h4>⚙️ Core Backend</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">Laravel</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">SilverStripe</span>
+                    <span class="skill-tag">MVC / OOP</span>
+                    
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h4>🗄️ Data &amp; Analytics</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">Elasticsearch</span>
+                    <span class="skill-tag">Query Optimization</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h4>☁️ DevOps &amp; Cloud</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">AWS (S3)</span>
+                    <span class="skill-tag">AWS EC2</span>
+                    <span class="skill-tag">CI/CD</span>
+                    <span class="skill-tag">GitHub Actions</span>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h4>🧩 Frontend Basics</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">HTML5 / CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">jQuery</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- architectural case studies (NDA‑compliant) -->
+    <div class="card" style="padding-bottom: 0.5rem;">
+        <div class="section-title" style="margin-bottom: 1rem;">Architectural Case Studies</div>
+
+        <!-- case 1 -->
+        <div class="case-card">
+            <div class="case-title">Vehicle Health Intelligence Engine</div>
+            <div class="case-meta">Laravel · Python · Prodemand API · AI recommendation layer · MySQL</div>
+
+            <span class="case-label">📌 The Engineering Challenge:</span>
+            <p>
+                Ingesting disparate VIN‑based data from Prodemand APIs, odometer telemetry, and historical
+                service logs caused severe schema drift and latency. Querying across 3+ data sources resulted
+                in timeouts and stale health scores — degrading user trust.
+            </p>
+
+            <span class="case-label">✅ The Architectural Solution:</span>
+            <p>
+                Designed a unified data ingestion pipeline with idempotent ETL jobs. A weighted scoring
+                algorithm normalised service intervals and OEM rules, reducing manual vehicle inspections
+                by <strong>~60%</strong>. Integrated an AI‑powered recommendation service that reduced
+                maintenance alert latency by <strong>42%</strong>.
+            </p>
+        </div>
+
+        <!-- case 2 -->
+        <div class="case-card">
+            <div class="case-title">Multi‑Vendor ETL Fabric (Walmart &amp; Amazon)</div>
+            <div class="case-meta">Python · PHP · OAuth 2.0 · AWS S3 · GitHub Actions</div>
+
+            <span class="case-label">📌 The Engineering Challenge:</span>
+            <p>
+                Corporate vendor reports arrived in disparate formats with missing fields, duplicates, and
+                inconsistent encoding. Token drop‑off from OAuth 2.0 sessions caused frequent pipeline
+                failures. Legacy PHP scripts lacked idempotency, leading to duplicate records and skewed
+                business metrics.
+            </p>
+
+            <span class="case-label">✅ The Architectural Solution:</span>
+            <p>
+                Built a resilient ETL fabric with retry‑aware OAuth 2.0 token refresh and secure S3 staging.
+                Implemented a Python‑based validation layer that sanitised 100% of incoming records,
+                improving aggregate data accuracy by <strong>25%</strong>. CI/CD via GitHub Actions ensured
+                zero‑regression deployments.
+            </p>
+        </div>
+
+        <!-- case 3 -->
+        <div class="case-card">
+            <div class="case-title">Legacy Portal Modernisation (Canada)</div>
+            <div class="case-meta">Laravel · Vue.js · Docker · Elasticsearch · Repository Pattern</div>
+
+            <span class="case-label">📌 The Engineering Challenge:</span>
+            <p>
+                A monolithic client portal with 5+ year old code suffered from 2‑second+ API latency,
+                tangled business logic, and a 40% test failure rate. Deployments were risky and required
+                overnight manual interventions.
+            </p>
+
+            <span class="case-label">✅ The Architectural Solution:</span>
+            <p>
+                Decomposed the monolith into service‑oriented modules using the Repository Design Pattern.
+                Dockerised the entire stack and introduced Elasticsearch for read‑heavy lookups, slashing
+                latency by <strong>40%</strong>. Achieved <strong>100% test pass rate</strong> via PHPStan
+                and automated CI checks — enabling zero‑downtime releases.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- education + meta -->
+    <div class="card" style="margin-bottom: 0;">
+        <div class="section-title">Education</div>
+        <div style="font-size:1rem; font-weight:500; color:#f8fafc;">University of Central Punjab · Lahore</div>
+        <div style="color:#94a3b8; margin-bottom:0.25rem;">
+            Bachelor of Science in Computer Science (BS CS) — <strong>GPA: 3.52 / 4.0</strong>
+        </div>
+
+        <div class="edu-meta">
+            <span>🎓 Graduation: August 2021</span>
+            <span>📘 IELTS Academic: 7.0</span>
+            <span>📍 Lahore, Pakistan</span>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
